@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    background-color: #212121;
+    color: #ececec;
+    font-family: 'Söhne', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#root,
+#__next {
+    height: 100%;
+    width: 100%;
+}
+
+/* Scrollbar styling - ChatGPT style */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* Smooth animations */
+@layer utilities {
+    .transition-smooth {
+        transition: all 0.15s ease;
+    }
+}
+
+/* Text selection */
+::selection {
+    background-color: rgba(16, 163, 127, 0.4);
+    color: inherit;
+}
+
+/* Focus ring */
+*:focus-visible {
+    outline: 2px solid #10a37f;
+    outline-offset: 2px;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    /* Prevent horizontal scroll on mobile */
+    html,
+    body {
+        overflow-x: hidden;
+    }
+
+    /* Smooth transitions for mobile drawer */
+    .transition-transform {
+        transition-property: transform;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 200ms;
+    }
+}
