@@ -1,7 +1,7 @@
 export const resumeData = {
     basics: {
         name: 'Tyson Elfors',
-        title: 'Software Engineer | .NET, C#, React | Backend & Systems-Focused',
+        title: 'Software Engineer | .NET, C#, React, TypeScript | Backend & Systems-Focused',
         email: 'tyelf22@gmail.com',
         phone: '435-841-7309',
         website: 'https://tysonelfors.com',
@@ -20,18 +20,18 @@ export const resumeData = {
             },
         ],
         summary:
-            'Software Engineer with 4+ years of experience developing scalable web applications and backend systems using .NET, C#, React, and SQL. Experienced in API development, database optimization, and building secure, high-usage production systems. Focused on performance, clean architecture, and solving complex engineering problems in large-scale environments.',
+            'Software Engineer with 5+ years of experience building scalable web applications and backend systems using .NET, C#, React, TypeScript, and SQL. Proven track record architecting production platforms serving tens of thousands of users statewide. Specializes in API development, database optimization, and delivering secure, high-performance enterprise systems.',
     },
     engineeringHighlights: [
-        'Architected and engineered the full end-to-end student registration platform used by approximately 15% of students and parents across Utah LEAs.',
-        'Owned system design, backend logic, database modeling, and frontend workflow for a high-visibility statewide production system.',
-        '4+ years building production software using .NET, C#, React, SQL, and REST APIs in enterprise environments.',
-        'Strong backend focus with experience designing secure stored procedures, scalable data models, and performance-optimized application logic.',
-        'Proven ability to take complex features from architecture through deployment and long-term production support.',
+        'Architected and shipped the end-to-end student registration platform used by ~15% of students and parents across Utah LEAs.',
+        'Owned full-stack system design — backend logic, data modeling, API layer, and frontend workflows — for a statewide production system.',
+        '5+ years building production software with .NET, C#, React, TypeScript, SQL, and REST APIs in enterprise environments.',
+        'Deep backend expertise: secure stored procedures, scalable data models, and performance-optimized application architecture.',
+        'Track record of driving complex features from design through deployment and long-term production support.',
     ],
     skills: {
-        languages: ['C#', 'JavaScript', 'Python', 'SQL'],
-        frameworks: ['.NET MVC', 'ASP.NET', 'React', 'Node.js', 'Express'],
+        languages: ['C#', 'TypeScript', 'Python', 'SQL'],
+        frameworks: ['.NET MVC', 'ASP.NET', 'React', 'Next.js', 'Node.js', 'Express'],
         databases: ['SQL Server', 'MongoDB'],
         architectureAndTools: [
             'REST APIs',
@@ -39,6 +39,7 @@ export const resumeData = {
             'Git',
             'Docker',
             'Linux',
+            'CI/CD',
             'Agile (Jira, BitBucket)',
         ],
     },
@@ -49,11 +50,11 @@ export const resumeData = {
             startDate: '2021',
             endDate: 'Present',
             highlights: [
-                'Engineered and maintained a large-scale .NET MVC student information system serving districts statewide.',
-                'Designed and built the complete student registration workflow adopted by ~15% of Utah students and parents registering at LEAs.',
-                'Led backend architecture including business logic, validation rules, database design, and secure stored procedures.',
-                'Built and maintained React components integrated with RESTful APIs in a high-usage production environment.',
-                'Resolved production issues, improved performance, and enhanced long-term maintainability of core systems.',
+                'Architected and maintained a large-scale .NET MVC student information system serving all school districts statewide.',
+                'Designed and shipped the complete student registration workflow adopted by ~15% of Utah students and parents — roughly 100K+ users across LEAs.',
+                'Led backend architecture: business logic, validation engines, database schema design, and secure stored procedures handling sensitive student data.',
+                'Built performant React + TypeScript components integrated with RESTful APIs in a high-traffic production environment.',
+                'Drove production stability improvements — reduced critical bugs, optimized slow queries, and improved system maintainability.',
             ],
         },
         {
@@ -62,10 +63,10 @@ export const resumeData = {
             startDate: '2020',
             endDate: '2021',
             highlights: [
-                'Developed internal applications using C#, ASP.NET, React, Node.js, and SQL Server.',
-                'Refactored legacy SQL into secure stored procedures and significantly improved query efficiency.',
-                'Designed data warehouse reporting solutions for aggregated analytics and administrative decision-making.',
-                'Supported modernization of legacy web applications and transition toward mobile solutions using React Native.',
+                'Built internal applications using C#, ASP.NET, React, TypeScript, Node.js, and SQL Server.',
+                'Refactored legacy SQL into secure, parameterized stored procedures — cutting query execution time significantly.',
+                'Designed data warehouse reporting solutions powering aggregated analytics for administrative decision-making.',
+                'Led modernization of legacy web applications, migrating toward React-based frontends and mobile solutions.',
             ],
         },
     ],
@@ -79,9 +80,9 @@ export const resumeData = {
         },
         {
             institution: 'Utah Tech University',
-            degree: "Associates",
+            degree: "Associate's",
             major: 'General Education',
-            graduationYear: '2015-2016',
+            graduationYear: '2016',
         }
     ],
     projects: [],
