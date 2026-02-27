@@ -314,12 +314,15 @@ export default function ChatWindow({ messages, setMessages }) {
             }, 300);
         } else {
             setIsLoading(true);
-            const grokReply = await fetchGrokResponse(text);
-            setIsLoading(false);
-            setMessages((prev) => [
-                ...prev,
-                { role: 'assistant', content: grokReply },
-            ]);
+            try {
+                const grokReply = await fetchGrokResponse(text);
+                setMessages((prev) => [
+                    ...prev,
+                    { role: 'assistant', content: grokReply },
+                ]);
+            } finally {
+                setIsLoading(false);
+            }
         }
     };
 
