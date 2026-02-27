@@ -7,7 +7,7 @@ export default function InputBox({ onSend }) {
     const textareaRef = useRef(null);
     const formRef = useRef(null);
 
-    // Handle visual viewport resize (mobile keyboard open/close)
+    // Scroll input into view when mobile keyboard opens
     useEffect(() => {
         if (typeof window === 'undefined') return;
 
@@ -15,23 +15,19 @@ export default function InputBox({ onSend }) {
         if (!vv) return;
 
         const onResize = () => {
-            // Calculate offset when keyboard is open
-            const offsetBottom = window.innerHeight - vv.height - vv.offsetTop;
-            document.documentElement.style.setProperty(
-                '--keyboard-offset',
-                `${Math.max(0, offsetBottom)}px`
-            );
+            if (
+                document.activeElement === textareaRef.current &&
+                vv.height < window.innerHeight * 0.8
+            ) {
+                // Keyboard is open — scroll the input into view
+                requestAnimationFrame(() => {
+                    textareaRef.current?.scrollIntoView({ block: 'end', behavior: 'smooth' });
+                });
+            }
         };
 
         vv.addEventListener('resize', onResize);
-        vv.addEventListener('scroll', onResize);
-        onResize();
-
-        return () => {
-            vv.removeEventListener('resize', onResize);
-            vv.removeEventListener('scroll', onResize);
-            document.documentElement.style.setProperty('--keyboard-offset', '0px');
-        };
+        return () => vv.removeEventListener('resize', onResize);
     }, []);
 
     const handleSubmit = useCallback((e) => {
