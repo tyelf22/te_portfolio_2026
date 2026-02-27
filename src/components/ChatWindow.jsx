@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import MessageList from './MessageList';
 import SuggestionChips from './SuggestionChips';
 import ContextualChips from './ContextualChips';
@@ -275,8 +275,23 @@ function generateResponse(userMessage) {
     );
 }
 
+async function fetchGrokResponse(userMessage) {
+    try {
+        const res = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: userMessage }),
+        });
+        const data = await res.json();
+        return data.message;
+    } catch {
+        return "Something went wrong, but hey — ask me about Tyson's skills or experience! 🚀";
+    }
+}
+
 export default function ChatWindow({ messages, setMessages }) {
     const messagesContainerRef = useRef(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -287,18 +302,36 @@ export default function ChatWindow({ messages, setMessages }) {
         return () => clearTimeout(timer);
     }, [messages]);
 
+    const handleResponse = async (text) => {
+        const messageType = getMessageType(text);
+
+        if (messageType !== 'default') {
+            setTimeout(() => {
+                setMessages((prev) => [
+                    ...prev,
+                    { role: 'assistant', content: generateResponse(text) },
+                ]);
+            }, 300);
+        } else {
+            setIsLoading(true);
+            try {
+                const grokReply = await fetchGrokResponse(text);
+                setMessages((prev) => [
+                    ...prev,
+                    { role: 'assistant', content: grokReply },
+                ]);
+            } finally {
+                setIsLoading(false);
+            }
+        }
+    };
+
     const handleChipClick = (chipText) => {
         setMessages((prev) => [
             ...prev,
             { role: 'user', content: chipText },
         ]);
-
-        setTimeout(() => {
-            setMessages((prev) => [
-                ...prev,
-                { role: 'assistant', content: generateResponse(chipText) },
-            ]);
-        }, 300);
+        handleResponse(chipText);
     };
 
     const handleSendMessage = (text) => {
@@ -306,13 +339,7 @@ export default function ChatWindow({ messages, setMessages }) {
             ...prev,
             { role: 'user', content: text },
         ]);
-
-        setTimeout(() => {
-            setMessages((prev) => [
-                ...prev,
-                { role: 'assistant', content: generateResponse(text) },
-            ]);
-        }, 300);
+        handleResponse(text);
     };
 
     return (
@@ -328,6 +355,18 @@ export default function ChatWindow({ messages, setMessages }) {
                         className="flex-1 overflow-y-auto overscroll-contain scroll-smooth pt-12 md:pt-0"
                     >
                         <MessageList messages={messages} />
+                        {isLoading && (
+                            <div className="px-4 py-2">
+                                <div className="flex items-center gap-2 text-gray-400 text-sm">
+                                    <div className="flex gap-1">
+                                        <span className="animate-bounce">●</span>
+                                        <span className="animate-bounce" style={{ animationDelay: '0.1s' }}>●</span>
+                                        <span className="animate-bounce" style={{ animationDelay: '0.2s' }}>●</span>
+                                    </div>
+                                    Thinking...
+                                </div>
+                            </div>
+                        )}
                     </div>
                     <ContextualChips
                         lastMessageType={getMessageType(messages[messages.length - 2]?.content || '')}
