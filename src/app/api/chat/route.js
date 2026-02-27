@@ -30,7 +30,7 @@ Rules:
 - Keep it short and punchy.`;
 
 export async function POST(request) {
-    const apiKey = process.env.XAI_API_KEY;
+    const apiKey = process.env.GROQ_API_KEY;
 
     if (!apiKey) {
         return Response.json(
@@ -42,14 +42,14 @@ export async function POST(request) {
     try {
         const { message } = await request.json();
 
-        const res = await fetch('https://api.x.ai/v1/chat/completions', {
+        const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${apiKey}`,
             },
             body: JSON.stringify({
-                model: 'grok-3-mini',
+                model: 'llama-3.3-70b-versatile',
                 messages: [
                     { role: 'system', content: systemPrompt },
                     { role: 'user', content: message },
@@ -60,7 +60,7 @@ export async function POST(request) {
 
         if (!res.ok) {
             const errorText = await res.text();
-            console.error('Grok API error:', res.status, errorText);
+            console.error('Groq API error:', res.status, errorText);
             return Response.json(
                 { message: "Oops, my AI circuits are a bit fried right now! But I can still tell you about Tyson's skills, experience, or education — just ask! ⚡" },
                 { status: 200 }

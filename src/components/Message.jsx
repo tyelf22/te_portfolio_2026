@@ -10,7 +10,7 @@ export default function Message({ role, content }) {
             <div className="max-w-3xl mx-auto">
                 <div className="flex gap-2 md:gap-4 items-start">
                     {isUser ? (
-                        <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-chatgpt-green flex items-center justify-center flex-shrink-0 mt-0.5 md:mt-1">
+                        <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-indigo-500 flex items-center justify-center flex-shrink-0 mt-0.5 md:mt-1">
                             <span className="text-white text-xs md:text-sm font-medium">T</span>
                         </div>
                     ) : (
