@@ -4,7 +4,7 @@ import Logo from './Logo';
 
 export default function Sidebar({ onNewChat, onClose }) {
     return (
-        <aside className="w-[260px] bg-chatgpt-sidebar flex flex-col h-screen">
+        <aside className="w-[260px] bg-chatgpt-sidebar flex flex-col h-dvh md:h-screen">
             <div className="px-2 pt-3 pb-2">
                 <button
                     onClick={() => {
