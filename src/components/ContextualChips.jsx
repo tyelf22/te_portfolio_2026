@@ -115,17 +115,19 @@ export default function ContextualChips({ lastMessageType, onChipClick }) {
     const chips = chipsByContext[lastMessageType] || chipsByContext.default;
 
     return (
-        <div className="flex flex-col md:flex-row md:flex-wrap md:justify-center gap-2 px-3 md:px-4 py-2 md:py-3">
-            {chips.map((chip, index) => (
-                <button
-                    key={index}
-                    onClick={() => onChipClick(chip.text)}
-                    className="flex items-center gap-2 px-3 py-2.5 text-sm bg-chatgpt-sidebar border border-chatgpt-border hover:bg-chatgpt-hover hover:border-chatgpt-green/50 rounded-lg md:rounded-full transition-all duration-200 text-gray-200 hover:text-white"
-                >
-                    <span className="text-base">{chip.icon}</span>
-                    <span>{chip.text}</span>
-                </button>
-            ))}
+        <div className="shrink-0 overflow-x-auto px-3 md:px-4 py-2 md:py-3">
+            <div className="flex md:flex-wrap md:justify-center gap-2 max-w-3xl mx-auto">
+                {chips.map((chip, index) => (
+                    <button
+                        key={index}
+                        onClick={() => onChipClick(chip.text)}
+                        className="flex items-center gap-2 px-3 py-2 text-sm bg-chatgpt-sidebar border border-chatgpt-border hover:bg-chatgpt-hover hover:border-chatgpt-green/50 rounded-full transition-all duration-200 text-gray-200 hover:text-white whitespace-nowrap"
+                    >
+                        <span className="text-base">{chip.icon}</span>
+                        <span>{chip.text}</span>
+                    </button>
+                ))}
+            </div>
         </div>
     );
 }

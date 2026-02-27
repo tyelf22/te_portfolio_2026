@@ -13,7 +13,7 @@ export default function Page() {
     };
 
     return (
-        <div className="flex h-screen bg-chatgpt-bg overflow-hidden">
+        <div className="flex h-dvh bg-chatgpt-bg overflow-hidden">
             {/* Hamburger Menu Button - Mobile Only */}
             <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}

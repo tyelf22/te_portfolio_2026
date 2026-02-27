@@ -316,19 +316,24 @@ export default function ChatWindow({ messages, setMessages }) {
     };
 
     return (
-        <div className="flex-1 flex flex-col bg-chatgpt-bg h-full overflow-hidden">
+        <div className="flex flex-col h-full overflow-hidden bg-chatgpt-bg">
             {messages.length === 0 ? (
-                <SuggestionChips onChipClick={handleChipClick} />
+                <div className="flex-1 min-h-0 overflow-y-auto">
+                    <SuggestionChips onChipClick={handleChipClick} />
+                </div>
             ) : (
-                <>
-                    <div ref={messagesContainerRef} className="flex-1 overflow-y-auto flex flex-col scroll-smooth pt-12 md:pt-0">
+                <div className="flex-1 min-h-0 flex flex-col overflow-hidden">
+                    <div
+                        ref={messagesContainerRef}
+                        className="flex-1 overflow-y-auto overscroll-contain scroll-smooth pt-12 md:pt-0"
+                    >
                         <MessageList messages={messages} />
                     </div>
                     <ContextualChips
                         lastMessageType={getMessageType(messages[messages.length - 2]?.content || '')}
                         onChipClick={handleChipClick}
                     />
-                </>
+                </div>
             )}
 
             <InputBox onSend={handleSendMessage} />

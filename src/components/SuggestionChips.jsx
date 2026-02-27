@@ -39,7 +39,7 @@ export default function SuggestionChips({ onChipClick }) {
     ];
 
     return (
-        <div className="flex-1 flex flex-col items-center justify-center px-3 md:px-4 pb-20 md:pb-32 pt-12 md:pt-0">
+        <div className="flex-1 flex flex-col items-center justify-center px-3 md:px-4 pb-4 md:pb-8 pt-14 md:pt-0">
             <div className="text-center mb-6 md:mb-10">
                 <div className="flex justify-center mb-4 md:mb-8">
                     <Logo size={40} />
