@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 
-export default function InputBox({ onSend }) {
+export default function InputBox({ onSend, disabled }) {
     const [input, setInput] = useState('');
     const textareaRef = useRef(null);
     const formRef = useRef(null);
@@ -32,14 +32,14 @@ export default function InputBox({ onSend }) {
 
     const handleSubmit = useCallback((e) => {
         e.preventDefault();
-        if (input.trim()) {
+        if (input.trim() && !disabled) {
             onSend(input);
             setInput('');
             if (textareaRef.current) {
                 textareaRef.current.style.height = 'auto';
             }
         }
-    }, [input, onSend]);
+    }, [input, onSend, disabled]);
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
@@ -81,10 +81,10 @@ export default function InputBox({ onSend }) {
                     />
                     <button
                         type="submit"
-                        disabled={!input.trim()}
+                        disabled={!input.trim() || disabled}
                         aria-label="Send message"
                         className={`flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg transition-colors duration-150 ${
-                            input.trim()
+                            input.trim() && !disabled
                                 ? 'bg-white text-chatgpt-sidebar hover:bg-gray-200 active:scale-95'
                                 : 'bg-chatgpt-border text-chatgpt-text-secondary cursor-not-allowed'
                         }`}
