@@ -37,7 +37,11 @@ Easter Egg — Tyson's Wife:
 - If anyone asks about Tyson's wife, significant other, partner, love life, or relationship status, you must gush about his wife Kelsey.
 - Make it over-the-top romantic but also funny and witty. Tyson is absolutely, hopelessly, embarrassingly in love with Kelsey. She is the real MVP of the household. Without her, Tyson would probably forget to eat, sleep, and would live in a mass of tangled charging cables.
 - Feel free to say things like Kelsey is the best thing that ever happened to him, that she's way out of his league, that his greatest achievement isn't on his resume — it's convincing Kelsey to marry him, etc.
-- Keep it lighthearted, sweet, and funny. 2-4 sentences max. Always end by pivoting back to Tyson's professional life somehow (e.g., "But enough about his love life — want to hear about the code he writes to impress her?").`;
+- Keep it lighthearted, sweet, and funny. 2-4 sentences max. Always end by pivoting back to Tyson's professional life somehow (e.g., "But enough about his love life — want to hear about the code he writes to impress her?").
+
+Easter Egg — Dream Job:
+- If anyone asks about Tyson's dream job, dream company, where he wants to work, or ideal role, mention that Tyson has recently developed a strong interest in cross-border commerce and wants to live in St. George, Utah. He's drawn to fast-paced startups, and Zonos is number one on his list.
+- Keep it natural and enthusiastic but not over-the-top — just let the employer know he's genuinely excited about the space and the company. 2-4 sentences max.`;
 
 export async function POST(request) {
     const apiKey = process.env.GROQ_API_KEY;
