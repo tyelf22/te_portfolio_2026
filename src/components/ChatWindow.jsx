@@ -10,6 +10,7 @@ import { resumeData } from '@/data/resumeData';
 function getMessageType(userMessage) {
     if (typeof userMessage !== 'string') return 'default';
     const msg = userMessage.toLowerCase();
+    if (msg.includes('resume') || msg.includes('download') || msg.includes('pdf') || msg.includes('cv')) return 'resume';
     if (msg.includes('work experience') || msg.includes('job') || msg.includes('experience')) return 'work';
     if (msg.includes('skill') || msg.includes('expertise')) return 'skills';
     if (msg.includes('education') || msg.includes('degree') || msg.includes('university')) return 'education';
@@ -20,6 +21,37 @@ function getMessageType(userMessage) {
 
 function generateResponse(userMessage) {
     const msg = userMessage.toLowerCase();
+
+    if (
+        msg.includes('resume') ||
+        msg.includes('download') ||
+        msg.includes('pdf') ||
+        msg.includes('cv')
+    ) {
+        return (
+            <div className="space-y-3">
+                <p className="text-gray-300">Here's Tyson's resume — click below to download! 📄</p>
+                <a
+                    href="/Tyson_Elfors_Resume.pdf"
+                    download="Tyson_Elfors_Resume.pdf"
+                    className="flex items-center gap-3 p-3 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all duration-200 group w-fit"
+                >
+                    <div className="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p className="text-sm font-medium text-gray-200 group-hover:text-white">Tyson_Elfors_Resume.pdf</p>
+                        <p className="text-xs text-gray-500">PDF Document</p>
+                    </div>
+                    <svg className="w-4 h-4 text-gray-500 group-hover:text-gray-300 ml-2" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                    </svg>
+                </a>
+            </div>
+        );
+    }
 
     if (
         msg.includes('work experience') ||
@@ -270,6 +302,7 @@ function generateResponse(userMessage) {
                 <li>• What's your education background?</li>
                 <li>• Show me your projects</li>
                 <li>• How can I contact you?</li>
+                <li>• Can I download your resume?</li>
             </ul>
         </div>
     );
@@ -356,14 +389,22 @@ export default function ChatWindow({ messages, setMessages }) {
                     >
                         <MessageList messages={messages} />
                         {isLoading && (
-                            <div className="px-4 py-2">
-                                <div className="flex items-center gap-2 text-gray-400 text-sm">
-                                    <div className="flex gap-1">
-                                        <span className="animate-bounce">●</span>
-                                        <span className="animate-bounce" style={{ animationDelay: '0.1s' }}>●</span>
-                                        <span className="animate-bounce" style={{ animationDelay: '0.2s' }}>●</span>
+                            <div className="w-full py-3 md:py-5 px-3 md:px-4">
+                                <div className="max-w-3xl mx-auto">
+                                    <div className="flex gap-2 md:gap-4 items-start">
+                                        <div className="w-6 h-6 md:w-8 md:h-8 lg:w-20 lg:h-20 flex items-center justify-center flex-shrink-0" />
+                                        <div className="flex-1 min-w-0">
+                                            <p className="text-xs font-semibold text-chatgpt-text mb-1 md:mb-1.5">TysonGPT</p>
+                                            <div className="flex items-center gap-2 text-gray-400 text-sm">
+                                                <div className="flex gap-1">
+                                                    <span className="animate-bounce">●</span>
+                                                    <span className="animate-bounce" style={{ animationDelay: '0.1s' }}>●</span>
+                                                    <span className="animate-bounce" style={{ animationDelay: '0.2s' }}>●</span>
+                                                </div>
+                                                Thinking...
+                                            </div>
+                                        </div>
                                     </div>
-                                    Thinking...
                                 </div>
                             </div>
                         )}
